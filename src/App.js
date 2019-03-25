@@ -9,30 +9,17 @@ import Mundo from './componentes/Mundo';
 class App extends Component {
 
   state = {
-    rectangulos: {},
-    circulos: {},
+    rectangulos: [],
+    circulos: [],
     textos: {},
     flechas: {},
-    triangulos: {}
+    triangulos: []
   }
 
   componentDidMount(){
     this.setState({
-       rectangulos : [{
-                     width: 100,
-                     height: 200,
-                     x: 100,
-                     y: 100,
-                     fill: 'black',
-                     radius: 20,
-                     name: "rect1"
-                   }],
+        rectangulos:[{}],
        circulos : [{
-         radius: 50,
-         x : 200,
-         y: 100,
-         fill: "red",
-         name: "circle1"
        }],
        textos : [{
          name : "texto1",
@@ -55,17 +42,7 @@ class App extends Component {
          width: 200,
          height: 200
        }],
-       triangulos: [{
-         x : 190,
-         y : 180,
-         sides : 3,
-         radius :  80,
-         fill : "green",
-         stroke : "black",
-         strokeWidth : 4,
-         draggable : true,
-         name : 'triangle'
-       }],
+      
        selectedShapeName: ""
     })
   }
@@ -77,19 +54,37 @@ class App extends Component {
   }
 
 insertarRectangulo = (e) => {
-
-  const rectangulos = {...this.state.rectangulos};
-  rectangulos[`rectangulo${Date.now()}`] =   {
+    const rectangulos = Object.values(this.state.rectangulos);
+    rectangulos[`rect${Date.now()}`] =   {
                 width: 100,
                 height: 200,
-                x: e.evt.x,
-                y: e.evt.y,
+                x: 200,
+                y: 300,
                 fill: 'black',
-                radius: 20,
                 name: `rectangulo${Date.now()}`
             };
+
             this.setState({
               rectangulos
+            })
+}
+
+insertarTriangulo = (e) => {
+    const triangulos = Object.values(this.state.triangulos);
+    triangulos[`triangulo${Date.now()}`] =   {
+                  x : 190,
+                  y : 180,
+                  sides : 3,
+                  radius :  80,
+                  fill : "green",
+                  stroke : "black",
+                  strokeWidth : 4,
+                  draggable : true,
+                  name: `triangulo${Date.now()}`
+            };
+
+            this.setState({
+              triangulos
             })
 }
 
@@ -112,12 +107,13 @@ insertarFlecha = (e) => {
 }
 
 insertarCirculo = (e) => {
-  const circulos = {...this.state.circulos};
+  const circulos = Object.values(this.state.circulos);
   circulos[`circulo{Date.now()}`] =   {
                 radius: 50,
                 x : e.evt.x,
                 y: e.evt.y,
-                fill: "red"
+                fill: "red",
+                name: `circulo${Date.now()}`
             };
             this.setState({
                 circulos
@@ -150,6 +146,7 @@ insertarText = (e) => {
       flechas,
       triangulos
     } = this.state
+
     return (
         <Mundo
           selectedShapeName = {selectedShapeName}
@@ -158,6 +155,7 @@ insertarText = (e) => {
           textos = {textos}
           flechas = {flechas}
           triangulos = {triangulos}
+          insertarTriangulo = {this.insertarTriangulo}
           insertarCirculo = {this.insertarCirculo}
           insertarRectangulo = { this.insertarRectangulo }
           selectShapeName = {this.selectShapeNameFuncion}

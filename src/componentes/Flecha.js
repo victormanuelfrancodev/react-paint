@@ -7,7 +7,7 @@ class Flecha extends React.Component {
   render() {
     return (
       <Arrow
-          x = {550}
+         x = {550}
          y = {600}
          points = {[0,0, this.props.width / 2, this.props.height / 2]}
          pointerLength = {20}

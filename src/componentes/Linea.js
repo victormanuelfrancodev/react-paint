@@ -12,6 +12,7 @@ class Linea extends React.Component {
          strokeWidth = {15},
          lineCap =  {'round'},
          lineJoin =  {'round'}
+         draggable
       />
     );
   }

@@ -11,12 +11,11 @@ class Triangulo extends React.Component {
           y = {180}
           sides =  {3}
           radius = { 80}
-          fill = {"green"}
+          fill = {"red"}
           stroke = {"black"}
           strokeWidth =  {4}
-          draggable = {true}
-          name = {'triangle'}
-
+          name = {this.props.name}
+          draggable
       />
     );
   }

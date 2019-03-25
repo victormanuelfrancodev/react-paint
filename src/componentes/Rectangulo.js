@@ -7,7 +7,7 @@ class Rectangulo extends React.Component {
   render() {
     return (
       <Rect
-       name = {this.props.name}
+        name = {this.props.name}
         x = {this.props.x}
         y = {this.props.y}
         width= {this.props.width}
