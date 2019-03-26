@@ -3,7 +3,7 @@
   background-image: url("../Images/Fondo.jpg");
 }
 
-#stage{
+.stage{
   width: 1600px;
 	height: 782px;
 	background-image: url("../Images/Mesadetrabajo29.svg");

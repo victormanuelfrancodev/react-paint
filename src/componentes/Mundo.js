@@ -17,58 +17,58 @@ const LionImage = () => {
 
 
 const IconoFlecha = () => {
-  const [image] = useImage("./Images/Mesadetrabajo42.png");
-  return <Image src={"/Images/Mesadetrabajo42.png"} x={550}/>;
+  const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo40.svg');
+  return <Image image={image} x={380}/>;
 };
 
 const IconoLapiz = () => {
-  const [image] = useImage('https://konvajs.org/assets/lion.png');
-  return <Image image={image} x={1150}/>;
+  const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo33.svg');
+  return <Image image={image} x={410}/>;
 };
 
 const IconoLinea = () => {
-  const [image] = useImage('https://konvajs.org/assets/lion.png');
-  return <Image image={image} x={1150}/>;
+  const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo39.svg');
+  return <Image image={image} x={460}/>;
 };
 
 const IconoCuadrado = () => {
-  const [image] = useImage('https://konvajs.org/assets/lion.png');
-  return <Image image={image} x={1150}/>;
+  const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo41.svg');
+  return <Image image={image} x={490}/>;
 };
 
 const IconoTriangulo = () => {
-  const [image] = useImage('https://konvajs.org/assets/lion.png');
-  return <Image image={image} x={1150}/>;
+  const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo41.svg');
+  return <Image image={image} x={530}/>;
 };
 
 const IconoCirculo = () => {
-  const [image] = useImage('https://konvajs.org/assets/lion.png');
-  return <Image image={image} x={1150}/>;
+  const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo41.svg');
+  return <Image image={image} x={560}/>;
 };
 
 const IconoGoma = () => {
-  const [image] = useImage('https://konvajs.org/assets/lion.png');
-  return <Image image={image} x={1150}/>;
+  const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo35.svg');
+  return <Image image={image} x={590}/>;
 };
 
 const IconoPintar = () => {
-  const [image] = useImage('https://konvajs.org/assets/lion.png');
-  return <Image image={image} x={1150}/>;
+  const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo36.svg');
+  return <Image image={image} x={630}/>;
 };
 
 const IconoLetra = () => {
-  const [image] = useImage('https://konvajs.org/assets/lion.png');
-  return <Image image={image} x={1150}/>;
+  const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo37.svg');
+  return <Image image={image} x={660}/>;
 };
 
 const IconoVolver = () => {
-  const [image] = useImage('https://konvajs.org/assets/lion.png');
-  return <Image image={image} x={1150}/>;
+  const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo38.svg');
+  return <Image image={image} x={690}/>;
 };
 
 const IconoAvanzar= () => {
-  const [image] = useImage('https://konvajs.org/assets/lion.png');
-  return <Image image={image} x={1150}/>;
+  const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo38.svg');
+  return <Image image={image} x={720}/>;
 };
 
 
@@ -130,8 +130,8 @@ class Mundo extends React.Component {
 
   render() {
       return (
-        <div class="paint" >
-        <div id="stage">
+        <div class="paint">
+        <div class="stage">
         <Stage width={1600} height={782} onMouseDown = {this.handleStageMouseDown} >
           <Layer>
 
@@ -176,7 +176,17 @@ class Mundo extends React.Component {
             <Circle x={230} y={735} radius={15} fill={"blue"} id={"blue"}/>
             <Circle x={260} y={735} radius={15} fill={"green"} id={"green"}/>
 
+
             <IconoFlecha/>
+            <IconoLapiz/>
+            <IconoLinea/>
+            <IconoCuadrado/>
+            <IconoTriangulo/>
+            <IconoCirculo/>
+            <IconoGoma/>
+            <IconoPintar/>
+            <IconoLetra/>
+            <IconoVolver/>
             <TransformerComponent
               selectedShapeName={this.props.selectedShapeName}
             />
