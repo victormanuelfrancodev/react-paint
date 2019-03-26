@@ -42,8 +42,9 @@ class App extends Component {
          width: 200,
          height: 200
        }],
-      
-       selectedShapeName: ""
+
+       selectedShapeName: "",
+       selectedColor:""
     })
   }
 
@@ -136,9 +137,21 @@ insertarText = (e) => {
             })
 }
 
+resetColor = () => {
+  this.setState({
+    selectedColor: ""
+  })
+}
+
+changeColor = (color) => {
+  this.setState ({
+    selectedColor: color.target.id()
+  })
+}
 
   render() {
     const {
+      selectedColor,
       selectedShapeName,
       rectangulos,
       circulos,
@@ -149,16 +162,19 @@ insertarText = (e) => {
 
     return (
         <Mundo
+          selectedColor = {selectedColor}
           selectedShapeName = {selectedShapeName}
           rects= { rectangulos }
           circulos = {circulos}
           textos = {textos}
           flechas = {flechas}
           triangulos = {triangulos}
+          resetColor = {this.resetColor}
           insertarTriangulo = {this.insertarTriangulo}
           insertarCirculo = {this.insertarCirculo}
           insertarRectangulo = { this.insertarRectangulo }
           selectShapeName = {this.selectShapeNameFuncion}
+          changeColor = {this.changeColor}
         />
     );
   }
