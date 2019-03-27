@@ -60,15 +60,15 @@ class App extends Component {
   }
 
 insertarRectangulo = (e) => {
-    const rectangulos = Object.values(this.state.rectangulos);
-    rectangulos[`rect${Date.now()}`] =   {
+    let rectangulos = this.state.rectangulos;
+    rectangulos.push (   {
                 width: 100,
                 height: 200,
                 x: 200,
                 y: 300,
                 fill: 'black',
                 name: `rectangulo${Date.now()}`
-            };
+            });
 
             this.setState({
               rectangulos
@@ -76,8 +76,8 @@ insertarRectangulo = (e) => {
 }
 
 insertarTriangulo = (e) => {
-    const triangulos = Object.values(this.state.triangulos);
-    triangulos[`triangulo${Date.now()}`] =   {
+    let triangulos = this.state.triangulos;
+    triangulos.push(  {
                   x : 190,
                   y : 180,
                   sides : 3,
@@ -87,7 +87,7 @@ insertarTriangulo = (e) => {
                   strokeWidth : 4,
                   draggable : true,
                   name: `triangulo${Date.now()}`
-            };
+            });
 
             this.setState({
               triangulos
@@ -125,14 +125,14 @@ insertArrowWithTwoPositions =() =>
 }
 
 insertarCirculo = (e) => {
-  const circulos = Object.values(this.state.circulos);
-  circulos[`circulo{Date.now()}`] =   {
+  let circulos = this.state.circulos;
+  circulos.push ({
                 radius: 50,
                 x : e.evt.x,
                 y: e.evt.y,
                 fill: "red",
                 name: `circulo${Date.now()}`
-            };
+            })
             this.setState({
                 circulos
             })
@@ -140,15 +140,15 @@ insertarCirculo = (e) => {
 }
 
 insertarText = (e) => {
-  const textos = {...this.state.textos};
-  textos[`texto{Date.now()}`] =   {
+  let textos = this.state.textos;
+  textos.push =   ({
                 x : e.evt.x,
                 y : e.evt.y,
                 fontSize : 35,
                 text : "hola",
                 fontFamily : "Calibri",
                 fill: "green"
-            };
+            });
             this.setState({
                 textos
             })
