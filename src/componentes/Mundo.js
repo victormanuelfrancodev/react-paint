@@ -10,65 +10,59 @@ import TransformerComponent from './TransformerComponent';
 import useImage from 'use-image';
 import './css/style.css'
 
-const LionImage = () => {
-  const [image] = useImage('https://konvajs.org/assets/lion.png');
-  return <Image image={image} x={1150}/>;
-};
-
-
 const IconoFlecha = () => {
   const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo40.svg');
-  return <Image image={image} x={380} y={700} width={30} height={30}/>;
+  return <Image image={image} x={580} y={700} width={30} height={30} id={"flecha"}/>;
 };
 
 const IconoLapiz = () => {
   const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo33.svg');
-  return <Image image={image} x={420} y={700} width={30} height={30}/>;
+  return <Image image={image} x={620} y={700} width={30} height={30}/>;
 };
 
 const IconoLinea = () => {
   const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo39.svg');
-  return <Image image={image} x={460} y={700} width={30} height={30}/>;
+  return <Image image={image} x={660} y={700} width={30} height={30}/>;
 };
 
 const IconoCuadrado = () => {
   const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo41.svg');
-  return <Image image={image} x={500} y={700} width={30} height={30} id={"rectangulo"}/>;
+  return <Image image={image} x={700} y={700} width={30} height={30} id={"rectangulo"}/>;
 };
 
 const IconoTriangulo = () => {
   const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo41.svg');
-  return <Image image={image} x={540} y={700} width={30} height={30} id={"triangulo"}/>;
+  return <Image image={image} x={740} y={700} width={30} height={30} id={"triangulo"}/>;
 };
 
 const IconoCirculo = () => {
   const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo41.svg');
-  return <Image image={image} x={580} y={700} width={30} height={30} id={"circulo"}/>;
+  return <Image image={image} x={780} y={700} width={30} height={30} id={"circulo"}/>;
 };
 
 const IconoGoma = () => {
   const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo35.svg');
-  return <Image image={image} x={620} y={700} width={30} height={30}/>;
+  return <Image image={image} x={820} y={700} width={30} height={30}/>;
 };
 
 const IconoPintar = () => {
   const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo36.svg');
-  return <Image image={image} x={660} y={700} width={30} height={30}/>;
+  return <Image image={image} x={860} y={700} width={30} height={30}/>;
 };
 
 const IconoLetra = () => {
   const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo37.svg');
-  return <Image image={image} x={700} y={700} width={30} height={30}/>;
+  return <Image image={image} x={900} y={700} width={30} height={30}/>;
 };
 
 const IconoVolver = () => {
   const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo38.svg');
-  return <Image image={image} x={740} y={700} width={30} height={30}/>;
+  return <Image image={image} x={940} y={700} width={30} height={30}/>;
 };
 
 const IconoAvanzar= () => {
   const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo38.svg');
-  return <Image image={image} x={780} y={700} width={30} height={30}/>;
+  return <Image image={image} x={980} y={700} width={30} height={30}/>;
 };
 
 
@@ -77,6 +71,7 @@ class Mundo extends React.Component {
     handleStageMouseDown = e => {
     // this.props.insertarRectangulo(e);
   // clicked on stage - cler selection
+  if (this.props.isMakingLine === false){
   if (e.target === e.target.getStage()) {
       this.props.selectShapeName('');
     return;
@@ -113,7 +108,11 @@ class Mundo extends React.Component {
          this.props.insertarTriangulo(e);
       }else if (e.target.id().trim() === "circulo"){
         this.props.insertarCirculo(e);
-      }else if (e.target.id().trim() === "red"){
+      }
+      else if (e.target.id().trim() === "flecha"){
+        this.props.insertarFlecha(true);
+      }
+      else if (e.target.id().trim() === "red"){
         this.props.changeColor(e);
       }
       else if (e.target.id().trim() === "blue"){
@@ -126,6 +125,20 @@ class Mundo extends React.Component {
         this.props.changeColor(e);
       }
     }
+  }else{
+    const counter =  this.props.countClick + 1;
+
+    this.props.aumentarClick(counter)
+    if (counter === 1){
+      this.props.firstPos(e.target.getStage().getPointerPosition().x,e.target.getStage().getPointerPosition().y);
+    }else if (counter === 2){
+      this.props.secondPos(e.target.getStage().getPointerPosition().x,e.target.getStage().getPointerPosition().y);
+      this.props.aumentarClick(0)
+      this.props.insertarFlecha(false);
+      this.props.insertArrowWithTwoPositions();
+    }
+    console.log(counter);
+  }
 };
 
   render() {
@@ -148,14 +161,14 @@ class Mundo extends React.Component {
               <Texto key={i} {...txt} />
             ))}
 
-            {Array.from(this.props.flechas).map((arr, i) => (
+            {this.props.flechas.map((arr, i) => (
                <Flecha key={i} {...arr} />
             ))}
 
             {Array.from(this.props.triangulos).map((tri, i) => (
               <Triangulo key={i} {...tri} />
             ))}
-          
+
             <Circle x={80} y={700} radius={15} fill={"red"} id={"red"}/>
             <Circle x={110} y={700} radius={15} fill={"blue"} id={"blue"}/>
             <Circle x={140} y={700} radius={15} fill={"green"} id={"green"}/>
