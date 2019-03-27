@@ -18,57 +18,57 @@ const LionImage = () => {
 
 const IconoFlecha = () => {
   const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo40.svg');
-  return <Image image={image} x={380}/>;
+  return <Image image={image} x={380} y={700} width={30} height={30}/>;
 };
 
 const IconoLapiz = () => {
   const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo33.svg');
-  return <Image image={image} x={410}/>;
+  return <Image image={image} x={420} y={700} width={30} height={30}/>;
 };
 
 const IconoLinea = () => {
   const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo39.svg');
-  return <Image image={image} x={460}/>;
+  return <Image image={image} x={460} y={700} width={30} height={30}/>;
 };
 
 const IconoCuadrado = () => {
   const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo41.svg');
-  return <Image image={image} x={490}/>;
+  return <Image image={image} x={500} y={700} width={30} height={30} id={"rectangulo"}/>;
 };
 
 const IconoTriangulo = () => {
   const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo41.svg');
-  return <Image image={image} x={530}/>;
+  return <Image image={image} x={540} y={700} width={30} height={30} id={"triangulo"}/>;
 };
 
 const IconoCirculo = () => {
   const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo41.svg');
-  return <Image image={image} x={560}/>;
+  return <Image image={image} x={580} y={700} width={30} height={30} id={"circulo"}/>;
 };
 
 const IconoGoma = () => {
   const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo35.svg');
-  return <Image image={image} x={590}/>;
+  return <Image image={image} x={620} y={700} width={30} height={30}/>;
 };
 
 const IconoPintar = () => {
   const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo36.svg');
-  return <Image image={image} x={630}/>;
+  return <Image image={image} x={660} y={700} width={30} height={30}/>;
 };
 
 const IconoLetra = () => {
   const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo37.svg');
-  return <Image image={image} x={660}/>;
+  return <Image image={image} x={700} y={700} width={30} height={30}/>;
 };
 
 const IconoVolver = () => {
   const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo38.svg');
-  return <Image image={image} x={690}/>;
+  return <Image image={image} x={740} y={700} width={30} height={30}/>;
 };
 
 const IconoAvanzar= () => {
   const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo38.svg');
-  return <Image image={image} x={720}/>;
+  return <Image image={image} x={780} y={700} width={30} height={30}/>;
 };
 
 
@@ -155,11 +155,7 @@ class Mundo extends React.Component {
             {Array.from(this.props.triangulos).map((tri, i) => (
               <Triangulo key={i} {...tri} />
             ))}
-            <Circle x={80} y={700} radius={10} fill={"black"} id={"rectangulo"}/>
-            <Circle x={600} y={600} radius={30} fill={"black"} id={"circulo"}/>
-            <Circle x={700} y={600} radius={30} fill={"black"} id={"triangulo"}/>
-
-
+          
             <Circle x={80} y={700} radius={15} fill={"red"} id={"red"}/>
             <Circle x={110} y={700} radius={15} fill={"blue"} id={"blue"}/>
             <Circle x={140} y={700} radius={15} fill={"green"} id={"green"}/>
