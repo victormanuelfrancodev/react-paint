@@ -52,7 +52,7 @@ const IconoPintar = () => {
 
 const IconoLetra = () => {
   const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo37.svg');
-  return <Image image={image} x={900} y={700} width={30} height={30}/>;
+  return <Image image={image} x={900} y={700} width={30} height={30} id = {"texto"}/>;
 };
 
 const IconoVolver = () => {
@@ -68,7 +68,8 @@ const IconoAvanzar= () => {
 
 class Mundo extends React.Component {
 
-    handleStageMouseDown = e => {
+handleStageMouseDown = e => {
+
     // this.props.insertarRectangulo(e);
   // clicked on stage - cler selection
   if (this.props.isMakingLine === false){
@@ -79,27 +80,53 @@ class Mundo extends React.Component {
   // clicked on transformer - do nothing
   // find clicked rect by its name
   const name = e.target.name();
-
+  console.log (e.target);
   if (e.target.name().trim() !== "") {
-    const clickedOnTransformer =
-      e.target.getParent().className === "Transformer";
-    //  console.log("este es el target "+e.target.fill("blue"));
-    if (this.props.selectedColor !== ""){
-      e.target.fill(this.props.selectedColor);
-      this.props.resetColor()
-    }
-    if (clickedOnTransformer) {
-      return;
-    }
+        const clickedOnTransformer =
+          e.target.getParent().className === "Transformer";
+          console.log(e.target.attrs.id);
+        if  (e.target.attrs.id ==="TextEdit"){
+          //Get size of the stage
+          var stageBox = e.target.getStage().container().getBoundingClientRect();
+          var areaPosition = {
+            x : stageBox.left + e.target.attrs.x,
+            y:  stageBox.top + e.target.attrs.y
+          }
 
-    const shapes = [...this.props.rects,...this.props.circulos, ...this.props.textos, ...this.props.flechas, ...this.props.triangulos];
-    //const shapes = [...this.props.rects];
-    const shape = shapes.find(shape => shape.name === name);
-    if (shape) {
-      this.props.selectShapeName(name);
-    } else {
-      this.props.selectShapeName('');
-    }
+          var textarea = document.createElement('textarea');
+          document.body.appendChild(textarea);
+          textarea.value = e.target.attrs.text;
+          textarea.style.position = 'absolute';
+          textarea.style.top = areaPosition.y + 'px';
+          textarea.style.left = areaPosition.x + 'px';
+          textarea.style.width = e.target.width();
+          textarea.focus();
+
+          textarea.addEventListener('keydown', function(e) {
+          // hide on enter
+          if (e.keyCode === 13) {
+            e.target.text(textarea.value);
+            document.body.removeChild(textarea);
+          }
+        });
+        }
+        //  console.log("este es el target "+e.target.fill("blue"));
+        if (this.props.selectedColor !== ""){
+          e.target.fill(this.props.selectedColor);
+          this.props.resetColor()
+        }
+        if (clickedOnTransformer) {
+          return;
+        }
+
+        const shapes = [...this.props.rects,...this.props.circulos, ...this.props.textos, ...this.props.flechas, ...this.props.triangulos];
+        //const shapes = [...this.props.rects];
+        const shape = shapes.find(shape => shape.name === name);
+        if (shape) {
+          this.props.selectShapeName(name);
+        } else {
+          this.props.selectShapeName('');
+        }
     }else{
 
       if (e.target.id().trim() === "rectangulo"){
@@ -108,6 +135,8 @@ class Mundo extends React.Component {
          this.props.insertarTriangulo(e);
       }else if (e.target.id().trim() === "circulo"){
         this.props.insertarCirculo(e);
+      }else if(e.target.id().trim() === "texto"){
+        this.props.insertarText(e);
       }
       else if (e.target.id().trim() === "flecha"){
         this.props.insertarFlecha(true);

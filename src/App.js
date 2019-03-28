@@ -14,7 +14,7 @@ class App extends Component {
       this.state = {
         rectangulos: [],
         circulos: [],
-        textos: {},
+        textos: [],
         flechas: [],
         triangulos: [],
         isMakingLine:false,
@@ -141,14 +141,16 @@ insertarCirculo = (e) => {
 
 insertarText = (e) => {
   let textos = this.state.textos;
-  textos.push =   ({
+  textos.push({
                 x : e.evt.x,
                 y : e.evt.y,
                 fontSize : 35,
-                text : "hola",
+                texto : "hola",
                 fontFamily : "Calibri",
-                fill: "green"
+                fill: "green",
+                name: `texto{Date.now()}`
             });
+
             this.setState({
                 textos
             })
@@ -205,10 +207,10 @@ secondPos = (x,y) => {
 
     return (
         <Mundo
-        firstPosX = {firstPosX}
-        firstPosY = {firstPosY}
-        secondPosX = {secondPosX}
-        secondPosY = {secondPosY}
+          firstPosX = {firstPosX}
+          firstPosY = {firstPosY}
+          secondPosX = {secondPosX}
+          secondPosY = {secondPosY}
           firstPos = {this.firstPos}
           secondPos = {this.secondPos}
           selectedColor = {selectedColor}
@@ -222,6 +224,7 @@ secondPos = (x,y) => {
           countClick = {countClick}
           insertArrowWithTwoPositions = {this.insertArrowWithTwoPositions}
           resetColor = {this.resetColor}
+          insertarText = {this.insertarText}
           insertarFlecha = {this.insertarFlecha}
           insertarTriangulo = {this.insertarTriangulo}
           insertarCirculo = {this.insertarCirculo}

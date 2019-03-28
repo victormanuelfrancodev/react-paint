@@ -14,6 +14,7 @@ class Texto extends React.Component {
         text = {this.props.texto}
         fontFamily = {"Calibri"}
         fill= {this.props.fill}
+        id = {"TextEdit"}
         draggable
       />
     );
