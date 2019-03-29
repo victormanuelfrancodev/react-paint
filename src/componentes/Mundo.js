@@ -79,9 +79,14 @@ class Mundo extends React.Component {
     console.log('Real', e);
 
     if (e.keyCode === 13 || e.keyCode === 27) {
+      this.props.objectText.text(e.target.value);
       document.body.removeChild(e.target);
     }else{
+      if (e.keyCode !== 8){
         this.props.objectText.text(e.target.value + e.key);
+      }else{
+        this.props.objectText.text(e.target.value);
+      }
     }
   //  e.target.text (e.target.value + e.key);
   }
@@ -124,7 +129,6 @@ handleStageMouseDown = e => {
           textarea.style.left = areaPosition.x + 'px';
           textarea.style.width = e.target.width();
           textarea.focus();
-          e.target.text("hoppp");
           this.props.objectCreate(e);
           textarea.addEventListener('keydown',this.handleClick);
 
