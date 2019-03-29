@@ -68,6 +68,29 @@ const IconoAvanzar= () => {
 
 class Mundo extends React.Component {
 
+  constructor() {
+    super();
+    this.handleClick = this.handleClick.bind(this, 'Parameter');
+  }
+
+  handleClick(param, e) {
+    console.log('Parameter', param);
+    console.log('Event', e.target.value + e.key);
+    console.log('Real', e);
+
+    if (e.keyCode === 13 || e.keyCode === 27) {
+      document.body.removeChild(e.target);
+    }else{
+        this.props.objectText.text(e.target.value + e.key);
+    }
+  //  e.target.text (e.target.value + e.key);
+  }
+
+holamundo = () => {
+   console.log ("hola");
+    //this.props.objectText.text("jjijij");
+}
+
 handleStageMouseDown = e => {
 
     // this.props.insertarRectangulo(e);
@@ -101,14 +124,10 @@ handleStageMouseDown = e => {
           textarea.style.left = areaPosition.x + 'px';
           textarea.style.width = e.target.width();
           textarea.focus();
+          e.target.text("hoppp");
+          this.props.objectCreate(e);
+          textarea.addEventListener('keydown',this.handleClick);
 
-          textarea.addEventListener('keydown', function(e) {
-          // hide on enter
-          if (e.keyCode === 13) {
-            e.target.text(textarea.value);
-            document.body.removeChild(textarea);
-          }
-        });
         }
         //  console.log("este es el target "+e.target.fill("blue"));
         if (this.props.selectedColor !== ""){

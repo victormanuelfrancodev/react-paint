@@ -22,7 +22,8 @@ class App extends Component {
         firstPosX:0,
         firstPosY:0,
         secondPosX:0,
-        secondPosY:0
+        secondPosY:0,
+        objectText: null
       };
     }
 
@@ -49,15 +50,24 @@ class App extends Component {
        firstPosX:0,
        firstPosY:0,
        secondPosX:0,
-       secondPosY:0
+       secondPosY:0,
+       objectText: null
     })
   }
 
   selectShapeNameFuncion = (name) =>{
+
     this.setState({
       selectedShapeName: name
     })
   }
+
+objectCreate =(e) =>{
+  console.log("objecto creado: "+ e.target);
+  this.setState({
+    objectText: e.target
+  })
+}
 
 insertarRectangulo = (e) => {
     let rectangulos = this.state.rectangulos;
@@ -202,7 +212,8 @@ secondPos = (x,y) => {
       firstPosX,
       firstPosY,
       secondPosX,
-      secondPosY
+      secondPosY,
+      objectText
     } = this.state
 
     return (
@@ -222,6 +233,7 @@ secondPos = (x,y) => {
           isMakingLine = {isMakingLine}
           triangulos = {triangulos}
           countClick = {countClick}
+          objectCreate = {this.objectCreate}
           insertArrowWithTwoPositions = {this.insertArrowWithTwoPositions}
           resetColor = {this.resetColor}
           insertarText = {this.insertarText}
@@ -232,6 +244,7 @@ secondPos = (x,y) => {
           selectShapeName = {this.selectShapeNameFuncion}
           changeColor = {this.changeColor}
           aumentarClick = {this.aumentarClick}
+          objectText = {objectText}
         />
     );
   }
