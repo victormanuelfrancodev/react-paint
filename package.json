@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "immutable": "^4.0.0-rc.12",
     "konva": "^3.2.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-konva": "^16.8.4",
+    "react-redux-form": "^1.16.12",
     "react-scripts": "2.1.8",
+    "react-sketch": "^0.5.1",
     "use-image": "^1.0.3"
   },
   "scripts": {

@@ -3,7 +3,6 @@ import logo from './logo.svg';
 import './App.css';
 import { render } from 'react-dom';
 import Konva from 'konva';
-
 import Mundo from './componentes/Mundo';
 
 class App extends Component {

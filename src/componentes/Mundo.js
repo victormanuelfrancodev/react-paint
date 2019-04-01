@@ -7,8 +7,11 @@ import Flecha from './Flecha';
 import Triangulo from './Triangulo';
 import { Stage, Layer, Rect, Circle,Text,Image } from 'react-konva';
 import TransformerComponent from './TransformerComponent';
+import DrawArea from './DrawArea';
 import useImage from 'use-image';
+import Portal from './Portal';
 import './css/style.css'
+import {SketchField, Tools} from 'react-sketch';
 
 const IconoFlecha = () => {
   const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo40.svg');
@@ -81,6 +84,7 @@ class Mundo extends React.Component {
     if (e.keyCode === 13 || e.keyCode === 27) {
       this.props.objectText.text(e.target.value);
       document.body.removeChild(e.target);
+      this.props.objectText = null;
     }else{
       if (e.keyCode !== 8){
         this.props.objectText.text(e.target.value + e.key);
@@ -112,7 +116,6 @@ handleStageMouseDown = e => {
   if (e.target.name().trim() !== "") {
         const clickedOnTransformer =
           e.target.getParent().className === "Transformer";
-          console.log(e.target.attrs.id);
         if  (e.target.attrs.id ==="TextEdit"){
           //Get size of the stage
           var stageBox = e.target.getStage().container().getBoundingClientRect();
@@ -121,6 +124,11 @@ handleStageMouseDown = e => {
             y:  stageBox.top + e.target.attrs.y
           }
 
+          if (this.props.objectText !== null){
+            console.log("existe")
+          }else{
+            console.log("no existe")
+          }
           var textarea = document.createElement('textarea');
           document.body.appendChild(textarea);
           textarea.value = e.target.attrs.text;
@@ -196,6 +204,15 @@ handleStageMouseDown = e => {
   render() {
       return (
         <div class="paint">
+        <Portal>
+        <div class= "scketch">
+        <SketchField width='1600px'
+                                 height='782px'
+                                 tool={Tools.Pencil}
+                                 lineColor='black'
+                                 lineWidth={3}/>
+                                </div>
+        </Portal>
         <div class="stage">
         <Stage width={1600} height={782} onMouseDown = {this.handleStageMouseDown} >
           <Layer>
@@ -256,7 +273,9 @@ handleStageMouseDown = e => {
         </Stage>
 
         </div>
+
         </div>
+
       );
     };
 }
