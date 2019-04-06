@@ -15,14 +15,20 @@ class App extends Component {
         circulos: [],
         textos: [],
         flechas: [],
+        flechasSinPiquito:[],
         triangulos: [],
         isMakingLine:false,
+        isMakingLineSinPiquito:false,
         countClick:0,
         firstPosX:0,
         firstPosY:0,
         secondPosX:0,
         secondPosY:0,
-        objectText: null
+        objectText: null,
+        tool : "pen",
+        isDrawing : false,
+        lines : [],
+        isDrawLine: false
       };
     }
 
@@ -32,25 +38,23 @@ class App extends Component {
         rectangulos:[{}],
        circulos : [{
        }],
-
        textos : [{
-         name : "texto1",
-         x : 150,
-         y : 150,
-         fontSize : 30,
-         texto : "ttt mundo",
-         fontFamily : "Calibri",
-         fill: "red"
        }],
+       flechasSinPiquito:[{}],
        countClick: 0,
        selectedShapeName: "",
        selectedColor:"",
        isMakingLine:false,
+       isMakingLineSinPiquito:false,
        firstPosX:0,
        firstPosY:0,
        secondPosX:0,
        secondPosY:0,
-       objectText: null
+       objectText: null,
+       tool : "pen",
+       isDrawing : false,
+       lines : [],
+       isDrawLine: false
     })
   }
 
@@ -62,10 +66,24 @@ class App extends Component {
   }
 
 objectCreate =(e) =>{
-  console.log("objecto creado: "+ e.target);
   this.setState({
     objectText: e.target
   })
+}
+
+insertarFlechaSinPiquito = (e) =>{
+
+  let flechasSinPiquito = this.state.flechasSinPiquito;
+  flechasSinPiquito.push({
+                points : [this.state.firstPosX,this.state.firstPosY , this.state.secondPosX,this.state.secondPosY],
+                stroke: 'red',
+                strokeWidth: 15,
+                lineCap: 'round',
+                lineJoin: 'round',
+                 name: `flechasSinPiquito${Date.now()}`});
+          this.setState({
+            flechasSinPiquito: flechasSinPiquito
+          })
 }
 
 insertarRectangulo = (e) => {
@@ -109,6 +127,12 @@ insertarFlecha = (active) => {
   })
 }
 
+setInsertarFlechaSinPiquito = (active) =>{
+  this.setState({
+    isMakingLineSinPiquito: active
+  })
+}
+
 insertArrowWithTwoPositions =() =>
 {
   let flechas = this.state.flechas;
@@ -124,13 +148,9 @@ insertArrowWithTwoPositions =() =>
                 width: 20,
                 height: 20,
                 name: `flechas${Date.now()}`});
-
-
           this.setState({
             flechas: flechas
           })
-
-
 }
 
 insertarCirculo = (e) => {
@@ -197,6 +217,30 @@ secondPos = (x,y) => {
   })
 }
 
+setTool = (val) => {
+  this.setState({
+    tool:val
+  })
+}
+
+toggleDrawing = (val) => {
+  this.setState({
+    isDrawing:val
+  })
+}
+
+setLines = (val) => {
+  this.setState({
+    lines:val
+  })
+}
+
+getIsDrawingLine = (val) => {
+  this.setState({
+    isDrawLine:val
+  })
+}
+
   render() {
     const {
       selectedColor,
@@ -212,17 +256,33 @@ secondPos = (x,y) => {
       firstPosY,
       secondPosX,
       secondPosY,
-      objectText
+      objectText,
+      isPaint,
+      lastPointerPosition,
+      mode,
+      tool,
+      isDrawing,
+      lines,
+      isDrawLine,
+      isMakingLineSinPiquito,
+      flechasSinPiquito
     } = this.state
 
     return (
         <Mundo
+         isMakingLineSinPiquito= {isMakingLineSinPiquito}
+          isDrawLine = {isDrawLine}
+          tool = {tool}
+          flechasSinPiquito= {flechasSinPiquito}
+          isDrawing = {isDrawing}
+          lines = {lines}
+          isPaint = {isPaint}
+          lastPointerPosition = {lastPointerPosition}
+          mode = {mode}
           firstPosX = {firstPosX}
           firstPosY = {firstPosY}
           secondPosX = {secondPosX}
           secondPosY = {secondPosY}
-          firstPos = {this.firstPos}
-          secondPos = {this.secondPos}
           selectedColor = {selectedColor}
           selectedShapeName = {selectedShapeName}
           rects= { rectangulos }
@@ -232,18 +292,26 @@ secondPos = (x,y) => {
           isMakingLine = {isMakingLine}
           triangulos = {triangulos}
           countClick = {countClick}
+          objectText = {objectText}
+          firstPos = {this.firstPos}
+          secondPos = {this.secondPos}
           objectCreate = {this.objectCreate}
           insertArrowWithTwoPositions = {this.insertArrowWithTwoPositions}
           resetColor = {this.resetColor}
+          insertarFlechaSinPiquito = {this.insertarFlechaSinPiquito}
           insertarText = {this.insertarText}
           insertarFlecha = {this.insertarFlecha}
+          setInsertarFlechaSinPiquito = {this.setInsertarFlechaSinPiquito}
           insertarTriangulo = {this.insertarTriangulo}
           insertarCirculo = {this.insertarCirculo}
           insertarRectangulo = { this.insertarRectangulo }
           selectShapeName = {this.selectShapeNameFuncion}
           changeColor = {this.changeColor}
           aumentarClick = {this.aumentarClick}
-          objectText = {objectText}
+          setTool = {this.setTool}
+          toggleDrawing = {this.toggleDrawing}
+          setLines = {this.setLines}
+          getIsDrawingLine = {this.getIsDrawingLine}
         />
     );
   }

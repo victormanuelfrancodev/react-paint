@@ -1,5 +1,5 @@
 .paint{
-  position:absolute;
+  position:relative;
   height:1200px;
   background-image: url("../Images/Fondo.jpg");
 }
@@ -9,14 +9,4 @@
   width: 1600px;
 	height: 782px;
 	background-image: url("../Images/Mesadetrabajo29.svg");
-}
-.sketch {
-
-  margin-top:35px;
-  bottom: 0;
-  left: 0;
-  right: 0;
-
-  margin: auto;
-  position:absolute;
 }
