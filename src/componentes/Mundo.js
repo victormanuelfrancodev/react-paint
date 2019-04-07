@@ -51,7 +51,7 @@ const IconoGoma = () => {
 
 const IconoPintar = () => {
   const [image] = useImage('http://www.rojojaguar.com/Mesadetrabajo36.svg');
-  return <Image image={image} x={860} y={700} width={30} height={30}/>;
+  return <Image image={image} x={860} y={700} width={30} height={30} id={"pintura"}/>;
 };
 
 const IconoLetra = () => {
@@ -96,11 +96,6 @@ class Mundo extends React.Component {
     }
   //  e.target.text (e.target.value + e.key);
   }
-
-holamundo = () => {
-   console.log ("hola");
-    //this.props.objectText.text("jjijij");
-}
 
 doubleClick (param,e ){
 
@@ -217,43 +212,146 @@ if (this.props.isMakingLine === false){
     else{
 
       if (e.target.id().trim() === "rectangulo"){
+        this.props.setTextObject("Cuadrado,puedes seleccionarlo para manipularlo");
          this.props.insertarRectangulo(e);
          this.props.getIsDrawingLine(false);
       }else if (e.target.id().trim()==="lapiz"){
+         this.props.setTextObject("Lápiz,dibuja sobre el papel");
          this.props.getIsDrawingLine(true);
          this.props.setTool("pen");
       }else if (e.target.id().trim() === "linea"){
+        this.props.setTextObject("Linea, selecciona dos puntos dentro del papel");
         this.props.setInsertarFlechaSinPiquito(true)
         this.props.getIsDrawingLine(false);
       }
       else if (e.target.id().trim() === "triangulo"){
+         this.props.setTextObject("Triangulo, puedes seleccionarlo para manipularlo");
          this.props.insertarTriangulo(e);
          this.props.getIsDrawingLine(false);
       }else if (e.target.id().trim() === "circulo"){
+        this.props.setTextObject("Circulo, puedes seleccionarlo para manipularlo");
         this.props.insertarCirculo(e);
         this.props.getIsDrawingLine(false);
       }else if(e.target.id().trim() === "texto"){
+        this.props.setTextObject("Texto, puedes modificar el texto , para salir presiona Enter o Esc");
         this.props.insertarText(e);
       }
       else if(e.target.id().trim() === "goma"){
+        this.props.setTextObject("Goma, borra cualquier cosa");
           this.props.getIsDrawingLine(true);
           this.props.setTool("eraser");
       }
       else if (e.target.id().trim() === "flecha"){
+        this.props.setTextObject("Linea, selecciona dos puntos dentro del papel");
         this.props.insertarFlecha(true);
         this.props.getIsDrawingLine(false);
       }
-      else if (e.target.id().trim() === "red"){
-        this.props.changeColor(e);
+      else if (e.target.id().trim() === "810A16"){
+        this.props.setTextObject("Selecciona la figura que quieras cambiar el color.");
+        if(this.props.isColorBackground === true){
+            this.props.changeColor("#810A16");
+            this.props.setColorBackground(false);
+        }
       }
-      else if (e.target.id().trim() === "blue"){
-        this.props.changeColor(e);
+      else if (e.target.id().trim() === "#9C505B"){
+        this.props.setTextObject("Selecciona la figura que quieras cambiar el color.");
+        if(this.props.isColorBackground === true){
+            this.props.changeColor("#9C505B");
+            this.props.setColorBackground(false);
+        }
       }
-      else if (e.target.id().trim() === "black"){
-        this.props.changeColor(e);
+      else if (e.target.id().trim() === "#18593C"){
+        this.props.setTextObject("Selecciona la figura que quieras cambiar el color.");
+        if(this.props.isColorBackground === true){
+            this.props.changeColor("#18593C");
+            this.props.setColorBackground(false);
+        }
       }
-      else if (e.target.id().trim() === "green"){
-        this.props.changeColor(e);
+      else if (e.target.id().trim() === "#1B793B"){
+        this.props.setTextObject("Selecciona la figura que quieras cambiar el color.");
+        if(this.props.isColorBackground === true){
+            this.props.changeColor("#1B793B");
+            this.props.setColorBackground(false);
+        }
+      }
+      //#495934
+      else if (e.target.id().trim() === "#495934"){
+        this.props.setTextObject("Selecciona la figura que quieras cambiar el color.");
+        if(this.props.isColorBackground === true){
+            this.props.changeColor("#495934");
+            this.props.setColorBackground(false);
+        }
+      }
+      else if (e.target.id().trim() === "#406276"){
+        this.props.setTextObject("Selecciona la figura que quieras cambiar el color.");
+        if(this.props.isColorBackground === true){
+            this.props.changeColor("#406276");
+            this.props.setColorBackground(false);
+        }
+      }
+      //#08305D
+      else if (e.target.id().trim() === "#08305D"){
+        this.props.setTextObject("Selecciona la figura que quieras cambiar el color.");
+        if(this.props.isColorBackground === true){
+            this.props.changeColor("#08305D");
+            this.props.setColorBackground(false);
+        }
+      }
+      else if (e.target.id().trim() === "#5C0A3D"){
+        this.props.setTextObject("Selecciona la figura que quieras cambiar el color.");
+        if(this.props.isColorBackground === true){
+            this.props.changeColor("#5C0A3D");
+            this.props.setColorBackground(false);
+        }
+      }
+      //#93003B
+      else if (e.target.id().trim() === "#93003B"){
+        this.props.setTextObject("Selecciona la figura que quieras cambiar el color.");
+        if(this.props.isColorBackground === true){
+            this.props.changeColor("#93003B");
+            this.props.setColorBackground(false);
+        }
+      }
+      else if (e.target.id().trim() === "#813508"){
+        this.props.setTextObject("Selecciona la figura que quieras cambiar el color.");
+        if(this.props.isColorBackground === true){
+            this.props.changeColor("#813508");
+            this.props.setColorBackground(false);
+        }
+      }
+      //#BD781E
+      else if (e.target.id().trim() === "#BD781E"){
+        this.props.setTextObject("Selecciona la figura que quieras cambiar el color.");
+        if(this.props.isColorBackground === true){
+            this.props.changeColor("#BD781E");
+            this.props.setColorBackground(false);
+        }
+      }
+      else if (e.target.id().trim() === "#A98C5A"){
+        this.props.setTextObject("Selecciona la figura que quieras cambiar el color.");
+        if(this.props.isColorBackground === true){
+            this.props.changeColor("#A98C5A");
+            this.props.setColorBackground(false);
+        }
+      }
+      //#000000
+      else if (e.target.id().trim() === "#000000"){
+        this.props.setTextObject("Selecciona la figura que quieras cambiar el color.");
+        if(this.props.isColorBackground === true){
+            this.props.changeColor("#000000");
+            this.props.setColorBackground(false);
+        }
+      }
+      else if (e.target.id().trim() === "#FFFFFF"){
+        this.props.setTextObject("Selecciona la figura que quieras cambiar el color.");
+        if(this.props.isColorBackground === true){
+            this.props.changeColor("#FFFFFF");
+            this.props.setColorBackground(false);
+        }
+      }
+      else if (e.target.id().trim() === "pintura"){
+        this.props.setTextObject("Selecciona un color.");
+        this.props.setColorBackground(true);
       }
     }
   }
@@ -277,10 +375,10 @@ if (this.props.isMakingLine === false){
         <div class="paint">
         <div class="stage">
         <Stage width={1600} height={782} onMouseDown = {this.handleStageMouseDown}
-        onMouseMove = {this.handleMouseMove} onMouseUp={this.handleMouseUp}
-
-         >
+        onMouseMove = {this.handleMouseMove} onMouseUp={this.handleMouseUp}>
           <Layer>
+
+           <Text text= {this.props.textoDialogo} fontSize={20} fontFamily = {'Calibri'}  x = {20} y = {20} />
           {Array.from(this.props.rects).map((rect, i) => (
             <Rectangulo key={i} {...rect} />
           ))}
@@ -315,22 +413,21 @@ if (this.props.isMakingLine === false){
               }
             />
           ))}
+            <Circle x={80} y={700} radius={15} fill={"#810A16"} id={"810A16"}/>
+            <Circle x={110} y={700} radius={15} fill={"#9C505B"} id={"#9C505B"}/>
+            <Circle x={140} y={700} radius={15} fill={"#18593C"} id={"#18593C"}/>
+            <Circle x={170} y={700} radius={15} fill={"#1B793B"} id={"#1B793B"}/>
+            <Circle x={200} y={700} radius={15} fill={"#495934"} id={"#495934"}/>
+            <Circle x={230} y={700} radius={15} fill={"#406276"} id={"#406276"}/>
+            <Circle x={260} y={700} radius={15} fill={"#08305D"} id={"#08305D"}/>
 
-            <Circle x={80} y={700} radius={15} fill={"red"} id={"red"}/>
-            <Circle x={110} y={700} radius={15} fill={"blue"} id={"blue"}/>
-            <Circle x={140} y={700} radius={15} fill={"green"} id={"green"}/>
-            <Circle x={170} y={700} radius={15} fill={"black"} id={"black"}/>
-            <Circle x={200} y={700} radius={15} fill={"red"} id={"red"}/>
-            <Circle x={230} y={700} radius={15} fill={"blue"} id={"blue"}/>
-            <Circle x={260} y={700} radius={15} fill={"green"} id={"green"}/>
-
-            <Circle x={80} y={735} radius={15} fill={"red"} id={"red"}/>
-            <Circle x={110} y={735} radius={15} fill={"blue"} id={"blue"}/>
-            <Circle x={140} y={735} radius={15} fill={"green"} id={"green"}/>
-            <Circle x={170} y={735} radius={15} fill={"black"} id={"black"}/>
-            <Circle x={200} y={735} radius={15} fill={"red"} id={"red"}/>
-            <Circle x={230} y={735} radius={15} fill={"blue"} id={"blue"}/>
-            <Circle x={260} y={735} radius={15} fill={"green"} id={"green"}/>
+            <Circle x={80} y={735} radius={15} fill={"#5C0A3D"} id={"#5C0A3D"}/>
+            <Circle x={110} y={735} radius={15} fill={"#93003B"} id={"#93003B"}/>
+            <Circle x={140} y={735} radius={15} fill={"#813508"} id={"#813508"}/>
+            <Circle x={170} y={735} radius={15} fill={"#BD781E"} id={"#BD781E"}/>
+            <Circle x={200} y={735} radius={15} fill={"#A98C5A"} id={"#A98C5A"}/>
+            <Circle x={230} y={735} radius={15} fill={"#FFFFFF"} id={"#FFFFFF"}/>
+            <Circle x={260} y={735} radius={15} fill={"#000000"} id={"#000000"}/>
             <IconoFlecha/>
             <IconoLapiz/>
             <IconoLinea/>

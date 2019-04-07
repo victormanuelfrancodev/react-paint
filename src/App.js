@@ -11,6 +11,7 @@ class App extends Component {
       super(props);
 
       this.state = {
+        textoDialogo:"",
         rectangulos: [],
         circulos: [],
         textos: [],
@@ -28,14 +29,17 @@ class App extends Component {
         tool : "pen",
         isDrawing : false,
         lines : [],
-        isDrawLine: false
+        isDrawLine: false,
+        colorBackground:""
       };
     }
 
 
   componentDidMount(){
     this.setState({
-        rectangulos:[{}],
+      textoSeleccion:"",
+      textoObject:null,
+      rectangulos:[{}],
        circulos : [{
        }],
        textos : [{
@@ -54,9 +58,16 @@ class App extends Component {
        tool : "pen",
        isDrawing : false,
        lines : [],
-       isDrawLine: false
+       isDrawLine: false,
+       isColorBackground:false
     })
   }
+
+setTextObject = (val) => {
+  this.setState({
+    textoDialogo: "Instrucciones: "+val
+  })
+}
 
   selectShapeNameFuncion = (name) =>{
 
@@ -91,8 +102,8 @@ insertarRectangulo = (e) => {
     rectangulos.push (   {
                 width: 100,
                 height: 200,
-                x: 200,
-                y: 300,
+                x: 750,
+                y: 350,
                 fill: 'black',
                 name: `rectangulo${Date.now()}`
             });
@@ -105,13 +116,11 @@ insertarRectangulo = (e) => {
 insertarTriangulo = (e) => {
     let triangulos = this.state.triangulos;
     triangulos.push(  {
-                  x : 190,
-                  y : 180,
+                  x : 750,
+                  y : 350,
                   sides : 3,
                   radius :  80,
                   fill : "green",
-                  stroke : "black",
-                  strokeWidth : 4,
                   draggable : true,
                   name: `triangulo${Date.now()}`
             });
@@ -157,8 +166,8 @@ insertarCirculo = (e) => {
   let circulos = this.state.circulos;
   circulos.push ({
                 radius: 50,
-                x : e.evt.x,
-                y: e.evt.y,
+                x : 750,
+                y: 380,
                 fill: "red",
                 name: `circulo${Date.now()}`
             })
@@ -171,8 +180,8 @@ insertarCirculo = (e) => {
 insertarText = (e) => {
   let textos = this.state.textos;
   textos.push({
-                x : e.evt.x,
-                y : e.evt.y,
+                x : 750,
+                y : 380,
                 fontSize : 35,
                 texto : "hola",
                 fontFamily : "Calibri",
@@ -193,7 +202,7 @@ resetColor = () => {
 
 changeColor = (color) => {
   this.setState ({
-    selectedColor: color.target.id()
+    selectedColor: color
   })
 }
 
@@ -241,6 +250,13 @@ getIsDrawingLine = (val) => {
   })
 }
 
+setColorBackground =(val) =>{
+  this.setState({
+    isColorBackground:val
+  })
+}
+
+
   render() {
     const {
       selectedColor,
@@ -265,11 +281,15 @@ getIsDrawingLine = (val) => {
       lines,
       isDrawLine,
       isMakingLineSinPiquito,
-      flechasSinPiquito
+      flechasSinPiquito,
+      isColorBackground,
+      textoDialogo
     } = this.state
 
     return (
         <Mundo
+        textoDialogo = {textoDialogo}
+         isColorBackground = {isColorBackground}
          isMakingLineSinPiquito= {isMakingLineSinPiquito}
           isDrawLine = {isDrawLine}
           tool = {tool}
@@ -312,6 +332,8 @@ getIsDrawingLine = (val) => {
           toggleDrawing = {this.toggleDrawing}
           setLines = {this.setLines}
           getIsDrawingLine = {this.getIsDrawingLine}
+          setColorBackground ={this.setColorBackground}
+          setTextObject = {this.setTextObject}
         />
     );
   }
